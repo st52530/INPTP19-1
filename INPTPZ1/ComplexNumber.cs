@@ -79,5 +79,13 @@ namespace INPTPZ1
                    Real == number.Real &&
                    Imaginary == number.Imaginary;
         }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -837395861;
+            hashCode = hashCode * -1521134295 + Real.GetHashCode();
+            hashCode = hashCode * -1521134295 + Imaginary.GetHashCode();
+            return hashCode;
+        }
     }
 }
