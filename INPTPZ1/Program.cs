@@ -25,11 +25,11 @@ namespace INPTPZ1
             List<ComplexNumber> koreny = new List<ComplexNumber>();
             // TODO: poly should be parameterised?
             Polynomial p = new Polynomial();
-            p.Coe.Add(new ComplexNumber() { Real = 1 });
-            p.Coe.Add(ComplexNumber.Zero);
-            p.Coe.Add(ComplexNumber.Zero);
+            p.Coefficients.Add(new ComplexNumber() { Real = 1 });
+            p.Coefficients.Add(ComplexNumber.Zero);
+            p.Coefficients.Add(ComplexNumber.Zero);
             //p.Coe.Add(Cplx.Zero);
-            p.Coe.Add(new ComplexNumber() { Real = 1 });
+            p.Coefficients.Add(new ComplexNumber() { Real = 1 });
             Polynomial pd = p.Derive();
 
             Console.WriteLine(p);
@@ -69,7 +69,7 @@ namespace INPTPZ1
                     float it = 0;
                     for (int q = 0; q < 30; q++)
                     {
-                        var diff = p.Eval(ox).Divide(pd.Eval(ox));
+                        var diff = p.Evaluate(ox).Divide(pd.Evaluate(ox));
                         ox = ox.Subtract(diff);
 
                         //Console.WriteLine($"{q} {ox} -({diff})");

@@ -1,57 +1,59 @@
 ﻿using System.Collections.Generic;
 
-
 namespace INPTPZ1
 {
     class Polynomial
     {
-        public List<ComplexNumber> Coe { get; set; }
+        public List<ComplexNumber> Coefficients { get; set; }
 
         public Polynomial()
         {
-            Coe = new List<ComplexNumber>();
+            Coefficients = new List<ComplexNumber>();
         }
 
         public Polynomial Derive()
         {
-            Polynomial p = new Polynomial();
-            for (int i = 1; i < Coe.Count; i++)
+            Polynomial derivedPolynomial = new Polynomial();
+            for (int i = 1; i < Coefficients.Count; i++)
             {
-                p.Coe.Add(Coe[i].Multiply(new ComplexNumber() { Real = i }));
+                derivedPolynomial.Coefficients.Add(Coefficients[i].Multiply(new ComplexNumber() { Real = i }));
             }
 
-            return p;
+            return derivedPolynomial;
         }
 
-        public ComplexNumber Eval(ComplexNumber x)
+        public ComplexNumber Evaluate(ComplexNumber x)
         {
-            ComplexNumber s = ComplexNumber.Zero;
-            for (int i = 0; i < Coe.Count; i++)
+            ComplexNumber result = ComplexNumber.Zero;
+
+            for (int i = 0; i < Coefficients.Count; i++)
             {
-                ComplexNumber coef = Coe[i];
-                ComplexNumber bx = x;
+                ComplexNumber coefficient = Coefficients[i];
                 int power = i;
 
-                if (i > 0)
+                if (power > 0)
                 {
+                    ComplexNumber multipliedX = x;
                     for (int j = 0; j < power - 1; j++)
-                        bx = bx.Multiply(x);
+                    {
+                        multipliedX = multipliedX.Multiply(x);
+                    }
 
-                    coef = coef.Multiply(bx);
+                    coefficient = coefficient.Multiply(multipliedX);
                 }
 
-                s = s.Add(coef);
+                result = result.Add(coefficient);
             }
 
-            return s;
+            return result;
         }
 
         public override string ToString()
         {
             string s = "";
-            for (int i = 0; i < Coe.Count; i++)
+            for (int i = 0; i < Coefficients.Count; i++)
             {
-                s += Coe[i];
+                s += Coefficients[i];
                 if (i > 0)
                 {
                     for (int j = 0; j < i; j++)
