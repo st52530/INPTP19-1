@@ -46,9 +46,9 @@ namespace INPTPZ1
         private static void InitialSetup(string[] args)
         {
             int imageSize = DefaultSize;
-            if (args.Length != 0 && !int.TryParse(args[0], out imageSize))
+            if (args.Length != 0)
             {
-                imageSize = DefaultSize;
+                imageSize = int.Parse(args[0]);
             }
             bitmap = new Bitmap(imageSize, imageSize);
 
